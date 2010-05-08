@@ -1,11 +1,10 @@
-#
 Summary:	Provides dynamic modification of a user's environment
 Name:		environment-modules
-Version:	3.2.7b
-Release:	0.01
+Version:	3.2.7
+Release:	0.1
 License:	GPL v2
 Group:		Applications/System
-Source0:	http://downloads.sourceforge.net/modules/modules-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/modules/modules-%{version}b.tar.bz2
 # Source0-md5:	3ebba50a1f79e63aa9e2189e9e6c7952
 Source1:	modules.sh
 Patch0:		%{name}-bindir.patch
@@ -34,9 +33,8 @@ Modules are useful in managing different versions of applications.
 Modules can also be bundled into metamodules that will load an entire
 suite of different applications.
 
-
 %prep
-%setup -q -n modules-3.2.7
+%setup -q -n modules-%{version}
 %patch0 -p1
 
 %build
@@ -45,28 +43,26 @@ suite of different applications.
 	--prefix=%{_datadir} \
 	--exec-prefix=%{_datadir}/Modules \
 	--with-module-path=%{_sysconfdir}/modulefiles
-
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-install -D %SOURCE1 $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d/modules.sh
+
+install -D %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d/modules.sh
 ln -s %{_datadir}/Modules/init/csh $RPM_BUILD_ROOT%{_sysconfdir}/shrc.d/modules.csh
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/modulefiles
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/modulecmd
+%doc ChangeLog INSTALL NEWS README TODO
 %dir %{_sysconfdir}/modulefiles
 %{_sysconfdir}/shrc.d/modules.*
+%attr(755,root,root) %{_bindir}/modulecmd
 %{_datadir}/Modules
-%{_mandir}/man1/module.1.*
-%{_mandir}/man4/modulefile.4.*
-
-%doc ChangeLog INSTALL NEWS README TODO
+%{_mandir}/man1/module.1*
+%{_mandir}/man4/modulefile.4*
