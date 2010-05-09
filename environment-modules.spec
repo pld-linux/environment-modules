@@ -7,6 +7,7 @@ Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/modules/modules-%{version}b.tar.bz2
 # Source0-md5:	3ebba50a1f79e63aa9e2189e9e6c7952
 Source1:	modules.sh
+Patch0:		%{name}-bindir.patch
 URL:		http://modules.sourceforge.net/
 BuildRequires:	tcl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -34,6 +35,7 @@ suite of different applications.
 
 %prep
 %setup -q -n modules-%{version}
+%patch0 -p1
 
 %build
 %configure \
