@@ -1,11 +1,11 @@
 Summary:	Provides dynamic modification of a user's environment
 Name:		environment-modules
-Version:	3.2.7
-Release:	0.1
+Version:	3.2.8
+Release:	1
 License:	GPL v2
 Group:		Applications/System
-Source0:	http://downloads.sourceforge.net/modules/modules-%{version}b.tar.bz2
-# Source0-md5:	3ebba50a1f79e63aa9e2189e9e6c7952
+Source0:	http://downloads.sourceforge.net/modules/modules-%{version}a.tar.bz2
+# Source0-md5:	fcac3bea0d88fde4c4d7838bc8c4ddbe
 Source1:	modules.sh
 Patch0:		%{name}-bindir.patch
 URL:		http://modules.sourceforge.net/
