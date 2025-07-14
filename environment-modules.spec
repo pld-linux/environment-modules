@@ -35,7 +35,7 @@ suite of different applications.
 
 %prep
 %setup -q -n modules-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %configure \
